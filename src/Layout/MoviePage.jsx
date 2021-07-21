@@ -79,9 +79,7 @@ export default function MoviePage() {
     const interval = setTimeout(() => {
       dispatch({ type: "FETCH_REQUEST" });
       axios
-        .get(
-          `http://www.omdbapi.com/?s=${state.movie}&apikey=${process.env.REACT_APP_API_KEY}`
-        )
+        .get(`http://www.omdbapi.com/?s=${state.movie}&apikey=53acb18d`)
         .then((response) => {
           if (response.data.Response !== "False") {
             dispatch({
