@@ -80,7 +80,7 @@ export default function MoviePage() {
       dispatch({ type: "FETCH_REQUEST" });
       axios
         .get(
-          `http://www.omdbapi.com/?s=${state.movie}&apikey=${process.env.REACT_APP_API_KEY}/`
+          `https://www.omdbapi.com/?s=${state.movie}&apikey=${process.env.REACT_APP_API_KEY}/`
         )
         .then((response) => {
           if (response.data.Response !== "False") {
