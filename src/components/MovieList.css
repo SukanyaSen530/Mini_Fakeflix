@@ -1,0 +1,39 @@
+.container {
+  padding: 2% 0;
+}
+
+.row {
+  display: flex;
+  overflow-x: auto;
+  flex-wrap: nowrap;
+}
+
+h2 {
+  margin: 0 1rem;
+}
+
+::-webkit-scrollbar {
+  width: 5px;
+  height: 6px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: rgb(32, 32, 32);
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(61, 61, 61);
+}
+
+@media only screen and (max-width: 600px) {
+  h2 {
+    margin-top: 10px;
+  }
+}
