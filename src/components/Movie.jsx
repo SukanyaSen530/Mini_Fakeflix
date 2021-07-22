@@ -11,6 +11,7 @@ export default function Movie({ imdbID, Poster, Title, Year, icon }) {
       dispatch({
         type: "ADD_FAV",
         payload: { imdbID, Poster, Title, Year },
+        id: imdbID,
       });
     else {
       dispatch({ type: "REMOVE_FAV", payload: imdbID });

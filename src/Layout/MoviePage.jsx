@@ -12,7 +12,7 @@ const saveToLocalStoarge = (movies) => {
 };
 
 const initialState = {
-  movie: "Harry Potter",
+  movie: "Toy Story",
   movieData: [],
   favmovies: [],
   loading: false,
@@ -23,7 +23,7 @@ const reducer = (state, action) => {
   let movies;
   switch (action.type) {
     case "FETCH_REQUEST":
-      return { ...state, loading: true };
+      return { ...state, loading: true, err: action.error };
 
     case "FETCH_SUCCESS":
       return {
@@ -35,7 +35,7 @@ const reducer = (state, action) => {
 
     case "FETCH_ERROR":
       console.log(action.err);
-      return { ...state, loading: false, err: action.payload };
+      return { ...state, loading: false, err: action.error };
 
     case "SET_MOVIE":
       return {
@@ -50,12 +50,16 @@ const reducer = (state, action) => {
       };
 
     case "ADD_FAV":
-      movies = [...state.favmovies, action.payload];
-      saveToLocalStoarge(movies);
-      return {
-        ...state,
-        favmovies: movies,
-      };
+      if (state.favmovies.filter((m) => m.imdbID === action.id).length > 0) {
+        return state;
+      } else {
+        movies = [...state.favmovies, action.payload];
+        saveToLocalStoarge(movies);
+        return {
+          ...state,
+          favmovies: movies,
+        };
+      }
 
     case "REMOVE_FAV":
       movies = state.favmovies.filter(
@@ -77,11 +81,9 @@ export default function MoviePage() {
 
   useEffect(() => {
     const interval = setTimeout(() => {
-      dispatch({ type: "FETCH_REQUEST" });
+      dispatch({ type: "FETCH_REQUEST", error: "" });
       axios
-        .get(
-          `https://www.omdbapi.com/?s=${state.movie}&apikey=${process.env.REACT_APP_API_KEY}/`
-        )
+        .get(`https://www.omdbapi.com/?s=${state.movie}&apikey=53acb18d`)
         .then((response) => {
           if (response.data.Response !== "False") {
             dispatch({
@@ -92,14 +94,14 @@ export default function MoviePage() {
           } else {
             dispatch({
               type: "FETCH_ERROR",
-              payload: "💀 MOVIE NOT FOUND! 💀",
+              error: "💀 MOVIE NOT FOUND! 💀",
             });
           }
           //   console.log(response.data.Search, process.env.REACT_APP_API_KEY);
         })
         .catch((err) => {
           console.log(err);
-          dispatch({ type: "FETCH_ERROR", payload: "SOMETHING WENT WRONG :(" });
+          dispatch({ type: "FETCH_ERROR", error: "SOMETHING WENT WRONG :(" });
         });
     }, 2000);
 
@@ -124,12 +126,9 @@ export default function MoviePage() {
           <h1>Mini FakeFlix</h1>
           <SearchBox />
         </section>
-        {state.movieData.length === 0 && state.favmovies.length === 0 && (
-          <h1>Search For Movies</h1>
-        )}
         {state.loading && <h1 className="messages">Loading &#9685;</h1>}
         {state.err && <h1 className="messages">{state.err}</h1>}
-        {state.movieData.length !== 0 && !state.err && (
+        {state.movieData.length !== 0 && !state.err && !state.loading && (
           <MovieList
             type="Search Results"
             movies={state.movieData}
@@ -147,3 +146,7 @@ export default function MoviePage() {
     </MovieContext.Provider>
   );
 }
+
+/* {state.movieData.length === 0 && state.favmovies.length === 0 && (
+          <h1>Search For Movies</h1>
+        )} */
