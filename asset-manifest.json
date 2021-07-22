@@ -1,0 +1,20 @@
+{
+  "files": {
+    "main.css": "/Mini_Fakeflix/static/css/main.31138f10.chunk.css",
+    "main.js": "/Mini_Fakeflix/static/js/main.063c2b27.chunk.js",
+    "main.js.map": "/Mini_Fakeflix/static/js/main.063c2b27.chunk.js.map",
+    "runtime-main.js": "/Mini_Fakeflix/static/js/runtime-main.b73bae9e.js",
+    "runtime-main.js.map": "/Mini_Fakeflix/static/js/runtime-main.b73bae9e.js.map",
+    "static/js/2.d15e532b.chunk.js": "/Mini_Fakeflix/static/js/2.d15e532b.chunk.js",
+    "static/js/2.d15e532b.chunk.js.map": "/Mini_Fakeflix/static/js/2.d15e532b.chunk.js.map",
+    "index.html": "/Mini_Fakeflix/index.html",
+    "static/css/main.31138f10.chunk.css.map": "/Mini_Fakeflix/static/css/main.31138f10.chunk.css.map",
+    "static/js/2.d15e532b.chunk.js.LICENSE.txt": "/Mini_Fakeflix/static/js/2.d15e532b.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.b73bae9e.js",
+    "static/js/2.d15e532b.chunk.js",
+    "static/css/main.31138f10.chunk.css",
+    "static/js/main.063c2b27.chunk.js"
+  ]
+}
